@@ -11,27 +11,39 @@ class Tree
     return nil if arr.empty?
 
     mid = (arr.size - 1) / 2
-    node = Node.new(arr[mid])
+    root_node = Node.new(arr[mid])
 
-    node.left = build_tree(arr[0...mid])
-    node.right = build_tree(arr[(mid + 1)..-1])
+    root_node.left = build_tree(arr[0...mid])
+    root_node.right = build_tree(arr[(mid + 1)..-1])
 
-    # node
+    root_node
 
-    p arr
-    p mid
-    p node
-    p node.left
-    p node.right
+    # p arr
+    # p mid
+    # p root_node
+    # p root_node.left
+    # p root_node.right
   end
 
-  def insert(value, node)
-    
+  def insert(value, node = root)
+    return nil if value == node.data
+
+    if value < node.data
+      node.left.nil? ? node.left = Node.new(value) : insert(value, node.left)
+    else
+      node.right.nil? ? node.right = Node.new(value) : insert(value, node.right)
+    end
+  end
+
+  def delete(value, node = root)
+
   end
 end
 
 array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-# 10.times do
-#   array << rand(10)
-# end
-Tree.new(array)
+bst = Tree.new(array)
+5.times do
+  a = rand(100..150)
+  p bst.insert(a)
+  puts "Inserted #{a} to tree."
+end
