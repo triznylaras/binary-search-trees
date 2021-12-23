@@ -73,30 +73,19 @@ class Tree
     value < node.data ? find(value, node.left) : find(value, node.right)
   end
 
+  def level_order(node = root, queue = [])
+    print "#{node.data} "
+    queue << node.left unless node.left.nil?
+    queue << node.right unless node.right.nil?
+    return if queue.empty?
+
+    level_order(queue.shift, queue)
+  end
+
   # visualize binary search tree, method by student on Discord
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
     puts "#{prefix}#{is_left ? '└── ' : '┌── '}#{node.data}"
     pretty_print(node.left, "#{prefix}#{is_left ? '    ' : '│   '}", true) if node.left
   end
-end
-
-array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
-p array.uniq!
-bst = Tree.new(array)
-# 5.times do
-#   a = rand(100..150)
-#   p bst.insert(a)
-#   puts "Inserted #{a} to tree."
-# end
-bst.pretty_print
-bst.delete(324)
-puts "Deleted 324 from tree."
-bst.pretty_print
-value = 6345
-find_node = bst.find(value)
-if find_node.nil? 
-  puts "#{value} is not in the tree" 
-else 
-  puts "#{value} is in the tree"
 end
