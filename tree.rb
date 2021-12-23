@@ -73,13 +73,40 @@ class Tree
     value < node.data ? find(value, node.left) : find(value, node.right)
   end
 
-  def level_order(node = root, queue = [])
+  def level_order_rec(node = root, queue = [])
     print "#{node.data} "
     queue << node.left unless node.left.nil?
     queue << node.right unless node.right.nil?
     return if queue.empty?
+    
+    level_order_rec(queue.shift, queue)
+  end
 
-    level_order(queue.shift, queue)
+  def preorder(node = root)
+    # Root Left Right
+    return if node.nil?
+
+    print "#{node.data} "
+    preorder(node.left)
+    preorder(node.right)
+  end
+
+  def inorder(node = root)
+    # Left Root Right
+    return if node.nil?
+
+    inorder(node.left)
+    print "#{node.data} "
+    inorder(node.right)
+  end
+
+  def postorder(node = root)
+    # Left Right Root
+    return if node.nil?
+
+    postorder(node.left)
+    postorder(node.right)
+    print "#{node.data} "
   end
 
   # visualize binary search tree, method by student on Discord

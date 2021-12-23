@@ -1,4 +1,5 @@
 require_relative 'tree'
+require 'pry-byebug'
 
 array = [1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]
 p array.uniq!
@@ -20,5 +21,14 @@ else
   puts "#{value} is in the tree"
 end
 
-puts 'Level order traversal: '
-puts bst.level_order
+puts 'Level order traversal (recursion method): '
+puts bst.level_order_rec
+
+puts 'Preorder traversal (Root Left Right): '
+puts bst.preorder
+
+puts 'Inorder traversal (Left Root Right): '
+puts bst.inorder
+
+puts 'Postorder traversal (Left Right Root): '
+puts bst.postorder
