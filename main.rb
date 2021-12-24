@@ -40,3 +40,5 @@ puts "The depth of the node (number of edges in path from given node to tree's r
 puts bst.depth
 
 puts "Is the tree balanced? #{bst.balanced?}"
+
+puts "Rebalanced tree: #{bst.rebalance}"

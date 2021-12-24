@@ -2,10 +2,11 @@ require_relative 'node'
 require 'pry-byebug'
 
 class Tree
-  attr_reader :root
+  attr_accessor :root, :data
 
   def initialize(arr)
-    @root = build_tree(arr.sort.uniq)
+    @data = arr.sort.uniq
+    @root = build_tree(data)
   end
 
   def build_tree(arr)
@@ -144,6 +145,20 @@ class Tree
     return true if (left_height - right_height).abs <= 1 && balanced?(node.left) && balanced?(node.right)
 
     false
+  end
+
+  def rebalance
+    self.data = inorder_array
+    self.root = build_tree(data)
+  end
+
+  def inorder_array(node = root, array = [])
+    unless node.nil?
+      inorder_array(node.left, array)
+      array << node.data
+      inorder_array(node.right, array)
+    end
+    array
   end
 
   # visualize binary search tree, method by student on Discord
