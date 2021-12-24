@@ -11,12 +11,12 @@ bst = Tree.new(array)
 # end
 bst.pretty_print
 bst.delete(324)
-puts "Deleted 324 from tree: "
+puts 'Deleted 324 from tree: '
 bst.pretty_print
 value = 6345
 find_node = bst.find(value)
-if find_node.nil? 
-  puts "#{value} is not in the tree" 
+if find_node.nil?
+  puts "#{value} is not in the tree"
 else 
   puts "#{value} is in the tree"
 end
@@ -33,5 +33,8 @@ puts bst.inorder
 puts 'Postorder traversal (Left Right Root): '
 puts bst.postorder
 
-puts "The height of the node (number of edges in path from the given node): "
+puts 'The height of the node (number of edges in path from the given node): '
 puts bst.height
+
+puts "The depth of the node (number of edges in path from given node to tree's root node): "
+puts bst.depth

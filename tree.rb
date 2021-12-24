@@ -121,6 +121,20 @@ class Tree
     [height(node.left), height(node.right)].max + 1
   end
 
+  # accepts a node and returns its depth. Returns -1 if node doesn't exist
+  # depth: number of edges from the root to the given node
+  def depth(node = root, parent = root, edges = 0)
+    return 0 if node == parent
+    return -1 if parent.nil?
+
+    if node < parent.data
+      edges += 1
+      depth(node, parent.right, edges)
+    else
+      edges
+    end
+  end
+
   # visualize binary search tree, method by student on Discord
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
