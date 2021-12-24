@@ -109,6 +109,18 @@ class Tree
     print "#{node.data} "
   end
 
+  # accepts a node and returns its height. Returns -1 if node doesn't exist
+  # height: number of edges from a node to the lowest leaf in its subtree
+  def height(node = root)
+    unless node.nil? || node == root
+      node = (node.instance_of?(Node) ? find(node.data) : find(node))
+    end
+
+    return -1 if node.nil?
+
+    [height(node.left), height(node.right)].max + 1
+  end
+
   # visualize binary search tree, method by student on Discord
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right
