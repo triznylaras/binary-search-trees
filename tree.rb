@@ -135,6 +135,17 @@ class Tree
     end
   end
 
+  def balanced?(node = root)
+    return true if node.nil?
+
+    left_height = height(node.left)
+    right_height = height(node.right)
+
+    return true if (left_height - right_height).abs <= 1 && balanced?(node.left) && balanced?(node.right)
+
+    false
+  end
+
   # visualize binary search tree, method by student on Discord
   def pretty_print(node = @root, prefix = '', is_left = true)
     pretty_print(node.right, "#{prefix}#{is_left ? '│   ' : '    '}", false) if node.right

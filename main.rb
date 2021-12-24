@@ -38,3 +38,5 @@ puts bst.height
 
 puts "The depth of the node (number of edges in path from given node to tree's root node): "
 puts bst.depth
+
+puts "Is the tree balanced? #{bst.balanced?}"
